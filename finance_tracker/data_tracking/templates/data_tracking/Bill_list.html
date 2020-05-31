@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block body_block %}
+  
+<div class="jumbotron">
+    <div class="text-center"> 
+      <h1>Bill Overview Page</h1>
+    </div> 
+        <ol>
+            {% for b in bill_list %}
+            <div class="list-group">
+              <div class="row mx-md-n5">
+                <div class="shadow p-2 mb-3 bg-white rounded">  
+                  <h3><a href="{{b.id}}">{{b.bill_name}}</a></h3>
+                </div>
+             </div>
+            </div>
+            
+            
+            {% endfor %}
+
+        </ol>
+
+
+      {% if is_paginated %}
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+            <li><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="page-link"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+              <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <li><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="page-link"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      {% endif %}  
+    
+    <div class="position-absolute bottom-left">
+        <p><a class="btn btn-warning" href="{% url 'data_tracking:create_bill' %}">Add Bill</a></p>
+    </div>
+  
+  
+  
+  </div>
+
+
+{% endblock %}}

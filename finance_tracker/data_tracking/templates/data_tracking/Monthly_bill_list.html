@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body_block %}
+
+{% for bill in bill_list %}
+
+<li>{{bill.bill_name}}</li>
+
+{% endfor %}
+
+{% endblock %}

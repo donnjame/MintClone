@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+  <h2>Finance Tracker Registration Form</h2>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %}
+  </form>
+</div>
+</div>
+{% endblock %}
